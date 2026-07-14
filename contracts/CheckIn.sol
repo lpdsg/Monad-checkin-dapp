@@ -2,7 +2,6 @@
 pragma solidity ^0.8.20;
 
 contract CheckIn {
-
     struct CheckInInfo {
         uint256 totalCheckIns;
         uint256 currentStreak;
@@ -21,37 +20,54 @@ contract CheckIn {
     function getCurrentDay() public view returns (uint256) {
         return block.timestamp / 1 days;
     }
-    
-    function hasCheckedInToday(address user) public view returns (bool) {
-    uint256 currentDay = getCurrentDay();
 
-    return checkInRecords[user].lastCheckInDay == currentDay;
+    function hasCheckedInToday(address user) public view returns (bool) {
+        uint256 currentDay = getCurrentDay();
+
+        return checkInRecords[user].lastCheckInDay == currentDay;
     }
 
     function checkIn() public {
-    uint256 currentDay = getCurrentDay();
-    CheckInInfo storage userInfo = checkInRecords[msg.sender];
+        uint256 currentDay = getCurrentDay();
+        CheckInInfo storage userInfo = checkInRecords[msg.sender];
 
-    require(
-        userInfo.lastCheckInDay != currentDay,
-        "You have already checked in today"
-    );
+        require(
+            userInfo.lastCheckInDay != currentDay,
+            "You have already checked in today"
+        );
 
-    if (userInfo.lastCheckInDay + 1 == currentDay) {
-        userInfo.currentStreak += 1;
-    } else {
-        userInfo.currentStreak = 1;
+        if (userInfo.lastCheckInDay + 1 == currentDay) {
+            userInfo.currentStreak += 1;
+        } else {
+            userInfo.currentStreak = 1;
+        }
+
+        userInfo.totalCheckIns += 1;
+        userInfo.lastCheckInDay = currentDay;
+
+        emit CheckedIn(
+            msg.sender,
+            currentDay,
+            userInfo.totalCheckIns,
+            userInfo.currentStreak
+        );
     }
 
-    userInfo.totalCheckIns += 1;
-    userInfo.lastCheckInDay = currentDay;
+    function getCheckInInfo(address user)
+        public
+        view
+        returns (
+            uint256 totalCheckIns,
+            uint256 currentStreak,
+            uint256 lastCheckInDay
+        )
+    {
+        CheckInInfo memory userInfo = checkInRecords[user];
 
-    emit CheckedIn(
-        msg.sender,
-        currentDay,
-        userInfo.totalCheckIns,
-        userInfo.currentStreak
-    );
-}
-
+        return (
+            userInfo.totalCheckIns,
+            userInfo.currentStreak,
+            userInfo.lastCheckInDay
+        );
+    }
 }
