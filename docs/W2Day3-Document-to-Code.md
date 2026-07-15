@@ -49,7 +49,7 @@ struct CheckInInfo {
 }
 ```
 
-**mapping**
+### mapping
 用于根据钱包地址保存每个用户独立的数据。
 ```
 mapping(address => CheckInInfo) private checkInRecords;
@@ -58,11 +58,11 @@ mapping(address => CheckInInfo) private checkInRecords;
 - key 是用户钱包地址
 - value 是该地址对应的签到信息
 
-**msg.sender**
+### msg.sender
 用于获取当前调用合约的钱包地址。
 用户执行 checkIn 时，合约通过 msg.sender 判断是哪一个账户正在签到。
 
-**block.timestamp**
+### block.timestamp
 用于获取当前区块的时间戳。
 本项目使用：
 ```
@@ -70,13 +70,13 @@ block.timestamp / 1 days
 ```
 将秒级时间戳转换为按天计算的整数，用于判断用户当天是否已经签到。
 
-require
+### require
 
 用于检查交易执行前必须满足的条件。
 
 本项目通过 require 阻止用户一天内重复签到。
 
-**event**
+### event
 
 签到成功后触发 CheckedIn 事件，记录：
 - 用户钱包地址
@@ -85,7 +85,7 @@ require
 - 连续签到天数
 事件可以供区块浏览器和未来前端读取。
 
-4. AI 生成的代码骨架
+## 4. AI 生成的代码骨架
 
 AI 根据签到需求，将代码拆分为以下部分：
 ```
@@ -210,7 +210,8 @@ false
 ```
 
 ## 7. AI 与人类的职责划分
-AI 负责辅助
+
+### AI 负责辅助
 阅读和解释文档
 拆解业务需求
 生成代码骨架
@@ -218,7 +219,8 @@ AI 负责辅助
 提供测试步骤
 分析错误信息
 整理开发记录
-人类负责
+
+### 人类负责
 确认项目需求
 判断 AI 建议是否合理
 编译和部署合约
