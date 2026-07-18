@@ -65,6 +65,50 @@ Week 2 Role Log
 AI Collaboration Log
 Project Roadmap
 
+## 如何查看
+
+目前已经跑通 Solidity 智能合约部分，尚未完成 React 前端。
+
+可以通过以下方式检查项目：
+
+1. 查看 [`contracts/CheckIn.sol`](./contracts/CheckIn.sol) 智能合约源码。
+2. 将合约复制到 Remix IDE 中进行编译和部署。
+3. 在 Remix VM 中调用 `checkIn()` 完成签到。
+4. 使用 `hasCheckedInToday(address)` 查询签到状态。
+5. 查看仓库中的 Remix 测试截图。
+6. 通过 Monad Testnet 区块浏览器查询部署和签到交易。
+
+同一个账户在同一天再次调用 `checkIn()` 时，交易应当回滚并提示：
+
+```text
+You have already checked in today
+```
+
+### Mock 说明
+
+当前智能合约部分没有使用 mock 数据。
+
+已完成的测试包括：
+
+- Remix VM 测试账户；
+- Monad Testnet 测试钱包；
+- 实际智能合约部署；
+- 实际测试网签到交易。
+
+Remix VM 中的账户和余额属于本地测试环境，不是真实主网账户或真实资产。
+
+React 前端、后端和数据看板目前尚未完成，因此没有使用 mock 页面或 mock API 代替已完成功能。
+
+## Known Issues
+
+1. 当前仅完成 Solidity 智能合约，尚未完成 React 前端。
+2. 签到日期使用 `block.timestamp / 1 days` 计算，按照 UTC 日期判断。
+3. 当前主要通过 Remix 手动测试，没有 Hardhat 自动化测试。
+4. 连续签到逻辑尚未进行完整的跨日期测试。
+5. 当前没有可直接访问的网页 Demo。
+6. 当前没有排行榜和链上数据看板。
+7. Monad Testnet 可能发生调整或重置，测试网记录不代表真实资产。
+
 ## 安全说明
 
 本项目仅使用 Monad Testnet 和课程专用钱包。
