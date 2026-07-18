@@ -44,22 +44,20 @@ Spring Boot、MySQL 和链上数据看板将在后续阶段逐步加入。
 
 ## 当前进度
 
-## 当前进度
+### 已完成
 
 - [x] 创建课程专用钱包
 - [x] 配置 Monad Testnet
 - [x] 完成测试网链上交易
 - [x] 编写 CheckIn Solidity 合约
 - [x] 在 Remix VM 中部署和测试合约
-- [x] 完成多账户签到测试
+- [x] 完成重复签到测试
+- [x] 完成多账户数据隔离测试
 - [x] 完成 AI 辅助开发方案
-- [x] 完成 AI Collaboration Log 初稿
-- [ ] 将 CheckIn.sol 部署到 Monad Testnet
-- [ ] 记录合约地址和部署交易哈希
-- [ ] 创建 React 前端
-- [ ] 连接 MetaMask
-- [ ] 前端调用 CheckIn 合约
-- [ ] 完成可运行的 Check-in DApp Demo
+- [x] 完成 AI Collaboration Log
+- [x] 将 CheckIn.sol 部署到 Monad Testnet
+- [x] 记录合约地址和部署交易 Hash
+- [x] 整理 Week 2 Dev Portfolio Pack
 
 ### Week 2 学习记录
 Role Choice Card
